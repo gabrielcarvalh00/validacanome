@@ -14,6 +14,8 @@ function ValidaNomeResumido() {
     const [nome, setNome] = useState('');
     const [erro, setErro] = useState('');
     
+    //const nome, setNome, erro, setErro ;
+
     // Assiste ao 'nome' e valida a cada mudança
     useEffect(() => {
         setErro(''); // Limpa o erro ao iniciar a validação
