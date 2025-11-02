@@ -5,7 +5,7 @@ import ValidacaoNome from "./componenteValidacao/ValidacaoNome";
 const CadastroUsuario = ()=>{
   
  return(
-    <ValidacaoNome></ValidacaoNome>
+   <ValidacaoNome/>
  )
 
 }

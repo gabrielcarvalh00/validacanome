@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
 
-// ESQUEMA DE VALIDAÇÃO (Regras: Obrigatório e Sem Números)
+// criando um objeto "yupSchema" do yup
 const yupSchema = yup.object().shape({
-    nome: yup
-        .string()
-        .required('Nome obrigatório!') 
-        .matches(/^[^0-9]+$/, 'Não pode ter números.')
+    nome: yup // mostra abaixo quais regras a variavel input/nome vai usar
+        .string() //indica que o valor esperado e do tipo string
+        .required('Nome obrigatório!') //camppo nao pode ser vazio
+        .matches(/^[^0-9]+$/, 'Não pode ter números.') // o campo nao pode ser nulo
 });
 
 function ValidaNomeResumido() {
-    
+    //instanciando variavel e funcao no useState
     const [nome, setNome] = useState('');
     const [erro, setErro] = useState('');
-    
-    //const nome, setNome, erro, setErro ;
-
+   
     // Assiste ao 'nome' e valida a cada mudança
     useEffect(() => {
         setErro(''); // Limpa o erro ao iniciar a validação
 
-        yupSchema
+        yupSchema //funcao declarada na linha 6
             .validate({ nome }, { abortEarly: true }) // Valida o objeto { nome: ... }
             .catch(error => {
                  // Captura e exibe o erro se a validação falhar
@@ -28,14 +26,14 @@ function ValidaNomeResumido() {
                      setErro(error.errors[0]);
                  }
             });
-    }, [nome]); // Executa sempre que o estado 'nome' mudar
+    }, [nome]); //array de dependencia, fica observandop se ela muda para executar o useEffect
 
     return (
         <div>
             <input
                 type="text"
                 value={nome}
-                onChange={(e) => setNome(e.target.value)} // Atualiza o estado 'nome'
+                onChange={(e) => setNome(e.target.value)} //cada vez que ha modificacao, setNome é chamado, e passa o valor de value para nome
             />
           <p>{erro}</p>
       </div>
